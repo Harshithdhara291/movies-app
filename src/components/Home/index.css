@@ -3,7 +3,7 @@
   position: relative;
 }
 .second-container-home {
-  padding: 40px;
+  padding: 60px 40px 60px 40px;
   display: flex;
   flex-direction: column;
 }
@@ -12,28 +12,29 @@
     padding: 40px;
   }
 }
-.random-movie-section {
+.random-movie-section-desktop {
   height: 100vh;
   width: 100%;
-  /* top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1; */
   display: flex;
   justify-content: center;
   align-items: center;
   background-size: cover;
 }
+.random-movie-section-mobile {
+  display: none;
+}
 
-@media only screen and (max-width: 991px) {
-  .random-movie-section {
+@media only screen and (max-width: 1023px) {
+  .random-movie-section-mobile {
     height: 100vh;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     background-size: cover;
+  }
+  .random-movie-section-desktop {
+    display: none;
   }
 }
 @media only screen and (max-width: 991px) {
@@ -61,6 +62,23 @@
     align-items: flex-start;
     border: 3px solid #000000;
     border-radius: 10px;
+  }
+}
+@media only screen and (min-width: 769px) and (max-width: 1199px) {
+  .movie-overview-cont-home {
+    overflow: scroll;
+    height: 110px;
+    width: 90%;
+    margin-bottom: 20px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .movie-overview-cont-home {
+    overflow: scroll;
+    height: 110px;
+    width: 90%;
+    margin-bottom: 20px;
+    /* background-color: #ffffff; */
   }
 }
 @media only screen and (max-width: 991px) {
@@ -91,6 +109,7 @@
     padding: 3px;
     border-radius: 4px;
     cursor: pointer;
+    margin-top: 10px;
   }
 }
 @media only screen and (min-width: 991px) {
@@ -99,7 +118,6 @@
     font-style: normal;
     font-weight: 600;
     font-size: 48px;
-    line-height: 62px;
     color: #ffffff;
   }
   .movie-overview {
@@ -138,6 +156,5 @@
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
-  line-height: 31px;
   color: #ffffff;
 }

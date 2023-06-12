@@ -95,7 +95,7 @@
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
-  line-height: 26px;
+
   margin-right: 20px;
   color: #ffffff;
 }
@@ -104,7 +104,7 @@
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
-  line-height: 26px;
+
   margin-right: 20px;
   color: #ffffff;
   border: 1px solid #fff;
@@ -114,14 +114,14 @@
   .second-container-mid {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: flex-start;
     padding: 50px;
   }
   .second-sub-container {
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: flex-start;
     width: 50vw;
   }
   .similar-movies-container {
@@ -189,7 +189,7 @@
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
-    line-height: 31px;
+
     color: #ffffff;
   }
 
@@ -231,7 +231,7 @@
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
-    line-height: 31px;
+
     color: #ffffff;
   }
 
@@ -250,7 +250,7 @@
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
-  line-height: 26px;
+
   color: #94a3b8;
 }
 
@@ -259,7 +259,6 @@
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 24px;
   color: #ffffff;
 }
 

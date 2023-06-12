@@ -1,5 +1,9 @@
+.slick-prev:before,
+.slick-next:before {
+  color: #ffffff;
+}
 .trending-now-section {
-  padding: 0 40px 0 40px;
+  padding: 0 68px 0 68px;
 }
 @media only screen and (max-width: 991px) {
   .trending-now-section {

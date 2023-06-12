@@ -65,20 +65,39 @@ class Home extends Component {
   renderMoviesListView = () => {
     const {randomMovie} = this.state
     return (
-      <div
-        className="random-movie-section"
-        style={{
-          backgroundImage: `url(${randomMovie.backdropPath})`,
-        }}
-      >
-        <div className="movie-content">
-          <h1 className="movie-title">{randomMovie.title}</h1>
-          <p className="movie-overview">{randomMovie.overview}</p>
-          <button type="button" className="play-button">
-            Play
-          </button>
+      <>
+        <div
+          className="random-movie-section-desktop"
+          style={{
+            backgroundImage: `url(${randomMovie.backdropPath})`,
+          }}
+        >
+          <div className="movie-content">
+            <h1 className="movie-title">{randomMovie.title}</h1>
+
+            <p className="movie-overview">{randomMovie.overview}</p>
+            <button type="button" className="play-button">
+              Play
+            </button>
+          </div>
         </div>
-      </div>
+        <div
+          className="random-movie-section-mobile"
+          style={{
+            backgroundImage: `url(${randomMovie.posterPath})`,
+          }}
+        >
+          <div className="movie-content">
+            <h1 className="movie-title">{randomMovie.title}</h1>
+            <div className="movie-overview-cont-home">
+              <p className="movie-overview">{randomMovie.overview}</p>
+            </div>
+            <button type="button" className="play-button">
+              Play
+            </button>
+          </div>
+        </div>
+      </>
     )
   }
 

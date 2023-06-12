@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 // import {Link} from 'react-router-dom'
 import {Component} from 'react'
-// import Slider from 'react-slick'
+import Slider from 'react-slick'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import MovieCard from '../MovieCard'
@@ -14,82 +14,36 @@ const apiStatusConstants = {
   inProgress: 'IN_PROGRESS',
 }
 
-// const SamplePrevArrow = props => {
-//   const {className, style, onClick} = props
-//   return (
-//     <div
-//       className={className}
-//       style={{
-//         ...style,
-//         display: 'block',
-//         backgroundColor: '#181818',
-//       }}
-//       onClick={onClick}
-//     />
-//   )
-// }
-
-// const SampleNextArrow = props => {
-//   const {className, style, onClick} = props
-//   return (
-//     <div
-//       className={className}
-//       style={{...style, display: 'block', background: '#181818'}}
-//       onClick={onClick}
-//     />
-//   )
-// }
-
-// const settings = {
-//   dots: false,
-//   infinite: true,
-//   prevArrow: <SamplePrevArrow />,
-//   nextArrow: <SampleNextArrow />,
-//   responsive: [
-//     {
-//       breakpoint: 1500,
-//       settings: {
-//         slidesToShow: 4,
-//         slidesToScroll: 1,
-//         infinite: true,
-//         dots: false,
-//       },
-//     },
-//     {
-//       breakpoint: 1300,
-//       settings: {
-//         slidesToShow: 3,
-//         slidesToScroll: 1,
-//         infinite: true,
-//         dots: false,
-//       },
-//     },
-//     {
-//       breakpoint: 1024,
-//       settings: {
-//         slidesToShow: 3,
-//         slidesToScroll: 1,
-//         infinite: true,
-//         dots: false,
-//       },
-//     },
-//     {
-//       breakpoint: 600,
-//       settings: {
-//         slidesToShow: 3,
-//         slidesToScroll: 1,
-//         initialSlide: 2,
-//       },
-//     },
-//     {
-//       breakpoint: 480,
-//       settings: {
-//         slidesToShow: 3,
-//         slidesToScroll: 1,
-//       },
-//     },
-//   ],
-// }
+const settings = {
+  dots: false,
+  infinite: false,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 4,
+        slidesToScroll: 1,
+      },
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 1,
+      },
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+      },
+    },
+  ],
+}
 
 class Originals extends Component {
   state = {
@@ -139,11 +93,11 @@ class Originals extends Component {
     const {moviesList} = this.state
     return (
       <div className="trending-now-section">
-        <div className="movies-list">
+        <Slider {...settings}>
           {moviesList.map(movie => (
             <MovieCard movieData={movie} key={movie.id} />
           ))}
-        </div>
+        </Slider>
       </div>
     )
   }
