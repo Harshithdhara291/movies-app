@@ -1,0 +1,27 @@
+/* .poster-image {
+  height: 215px;
+  width: 260px;
+  border-radius: 10px;
+} */
+.poster-image {
+  height: 210px;
+  width: 190px;
+  border-radius: 10px;
+  margin: 20px;
+}
+@media only screen and (min-width: 769px) and (max-width: 1199px) {
+  .poster-image {
+    height: 138px;
+    width: 125px;
+    border-radius: 5px;
+    margin: 15px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .poster-image {
+    height: 108px;
+    width: 100px;
+    border-radius: 5px;
+    margin: 20px;
+  }
+}
