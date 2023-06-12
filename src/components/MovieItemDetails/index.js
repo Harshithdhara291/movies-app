@@ -35,6 +35,7 @@ class MovieItemDetails extends Component {
     adult: data.movie_details.adult,
     budget: data.movie_details.budget,
     backdropPath: data.movie_details.backdrop_path,
+    posterPath: data.movie_details.poster_path,
     runtime: data.movie_details.runtime,
     releaseDate: data.movie_details.release_date,
     overview: data.movie_details.overview,
@@ -91,7 +92,7 @@ class MovieItemDetails extends Component {
   }
 
   renderLoadingView = () => (
-    <div className="loader-container-mid">
+    <div className="loader-container-mid" testid="loader">
       <Loader type="TailSpin" color="#D81F26" height={50} width={50} />
     </div>
   )
@@ -100,7 +101,7 @@ class MovieItemDetails extends Component {
     <div className="failure-view">
       <img
         src="https://res.cloudinary.com/di4qjlwyr/image/upload/v1686379733/alert-triangle_vrl8ee.png"
-        alt="alert-triangle"
+        alt="failure view"
         className="alert-icon"
       />
       <h1>Something went wrong. Please try again</h1>
@@ -112,6 +113,7 @@ class MovieItemDetails extends Component {
 
   renderMovieDetailsView = () => {
     const {genres, similarMovies, audios, moviesData} = this.state
+    // console.log(moviesData)
     const releaseYear = moviesData.releaseDate.slice(0, 4)
     const hours = Math.floor(moviesData.runtime / 60)
     const minutes = moviesData.runtime % 60
@@ -127,7 +129,7 @@ class MovieItemDetails extends Component {
     return (
       <div className="movies-item-details">
         <div
-          className="first-container-mid"
+          className="first-container-mid-desktop"
           style={{
             backgroundImage: `url(${moviesData.backdropPath})`,
           }}
@@ -150,19 +152,44 @@ class MovieItemDetails extends Component {
             </button>
           </div>
         </div>
+        <div
+          className="first-container-mid-mobile"
+          style={{
+            backgroundImage: `url(${moviesData.posterPath})`,
+          }}
+        >
+          <div className="movie-data-container">
+            <h1 className="movie-title">{moviesData.title}</h1>
+            <div className="movie-overview-cont">
+              <p className="movie-overview">{moviesData.overview}</p>
+            </div>
+
+            <div className="movie-other-details">
+              <p className="other-details-para">
+                {hours}h {minutes}m
+              </p>
+              <p className="other-details-para-uua">{isAdult}</p>
+              <p className="other-details-para">{releaseYear}</p>
+            </div>
+            <button type="button" className="play-button">
+              Play
+            </button>
+          </div>
+        </div>
+
         <div className="second-container-mid">
           <div className="second-sub-container">
-            <div className="genres">
-              <h1 className="second-container-headings">Genres</h1>
+            <ul className="genres">
+              <h1 className="second-container-headings">genres</h1>
               {genres.map(genre => (
                 <li key={genre.id} style={{listStyleType: 'none'}}>
                   <p className="second-container-paras">{genre.name}</p>
                 </li>
               ))}
-            </div>
-            <div className="genres">
+            </ul>
+            <div>
               <h1 className="second-container-headings">Audio Available</h1>
-              <div>
+              <ul>
                 {audios.map(audio => (
                   <li key={audio.id} style={{listStyleType: 'none'}}>
                     <p className="second-container-paras">
@@ -170,7 +197,7 @@ class MovieItemDetails extends Component {
                     </p>
                   </li>
                 ))}
-              </div>
+              </ul>
             </div>
           </div>
           <div className="second-sub-container">

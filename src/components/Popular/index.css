@@ -11,6 +11,7 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    margin-top: 0;
   }
 }
 @media only screen and (max-width: 991px) {
@@ -20,6 +21,7 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    margin-top: 0;
   }
 }
 
@@ -42,6 +44,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 50vh;
   background-color: #0d0d0d;
+  height: 100vh;
 }

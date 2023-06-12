@@ -27,7 +27,8 @@ const Account = props => {
           <p className="left-paras">Member ship</p>
           <div>
             <p className="right-paras">{username}@gmail.com</p>
-            <p className="left-paras">Password: {masks}</p>
+            <p className="left-paras">Password</p>
+            <p className="left-paras">{masks}</p>
           </div>
         </div>
         <hr className="hr-line" />

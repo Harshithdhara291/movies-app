@@ -2,6 +2,8 @@
 import {Link} from 'react-router-dom'
 import {Component} from 'react'
 import {HiOutlineSearch} from 'react-icons/hi'
+import {AiFillCloseCircle} from 'react-icons/ai'
+
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import MovieCard from '../MovieCard'
@@ -16,9 +18,16 @@ const apiStatusConstants = {
 
 class Search extends Component {
   state = {
+    isOpen: false,
     searchInput: '',
     apiStatus: apiStatusConstants.initial,
     resultMovies: [],
+  }
+
+  handleMenu = () => {
+    this.setState(prevState => ({
+      isOpen: !prevState.isOpen,
+    }))
   }
 
   clickSearchInput = () => {
@@ -69,9 +78,8 @@ class Search extends Component {
     }
   }
 
-  renderHeader = () => {
+  renderDesktopHeader = () => {
     const {searchInput} = this.state
-    console.log(searchInput)
     return (
       <nav className="nav-header">
         <div className="nav-bar-large-container">
@@ -112,6 +120,7 @@ class Search extends Component {
                       type="button"
                       className="search-icon"
                       onClick={this.clickSearchInput}
+                      testid="searchButton"
                     >
                       <HiOutlineSearch />
                     </button>
@@ -146,7 +155,8 @@ class Search extends Component {
       <div className="no-result-search-section">
         <img
           src="https://res.cloudinary.com/di4qjlwyr/image/upload/v1686480269/Group_7394_cks4mg.png"
-          alt="Search no results"
+          alt="no movies"
+          className="no-result-image"
         />
         <h1 className="no-result-search-head">
           Your search for {searchInput} did not find any matches.
@@ -155,11 +165,86 @@ class Search extends Component {
     )
   }
 
+  renderOpenView = () => (
+    <div className="open-view-container">
+      <div className="ov-nav-items">
+        <Link to="/" className="mobile-nav-link">
+          <h1 className="ov-nav-item">Home</h1>
+        </Link>
+        <Link to="/popular" className="mobile-nav-link">
+          <h1 className="ov-nav-item">Popular</h1>
+        </Link>
+        <Link to="/account" className="mobile-nav-link">
+          <h1 className="ov-nav-item">Account</h1>
+        </Link>
+      </div>
+      <button type="button" onClick={this.handleMenu} className="close-button">
+        <AiFillCloseCircle className="close-icon" />
+      </button>
+    </div>
+  )
+
+  renderMobileView = () => {
+    const {isOpen, searchInput} = this.state
+    return (
+      <nav className="mobile-nav-header">
+        <div className="mobile-nav-menu">
+          <div className="mobile-nav-menu-item">
+            <Link to="/" className="mobile-logo">
+              <img
+                src="https://res.cloudinary.com/di4qjlwyr/image/upload/v1686399906/Group_7399_nfxnz3.png"
+                alt="website logo"
+                className="mobile-logo"
+              />
+            </Link>
+          </div>
+          <div className="mobile-nav-items">
+            <li className="mobile-nav-menu-item">
+              <Link to="/search" className="nav-link">
+                <div className="search-input-container">
+                  <input
+                    type="search"
+                    className="search-input"
+                    value={searchInput}
+                    onChange={this.changeSearchInput}
+                    onKeyDown={this.enterSearchInput}
+                  />
+                  <button
+                    type="button"
+                    className="search-icon"
+                    onClick={this.clickSearchInput}
+                    testid="searchButton"
+                  >
+                    <HiOutlineSearch />
+                  </button>
+                </div>
+              </Link>
+            </li>
+            <li className="mobile-nav-menu-item">
+              <button
+                type="button"
+                className="mobile-button-nav-link"
+                onClick={this.handleMenu}
+              >
+                <img
+                  src="https://res.cloudinary.com/di4qjlwyr/image/upload/v1686485497/add-to-queue_1_xszza9.png"
+                  alt="menu-icon"
+                  className="mobile-menu-icon"
+                />
+              </button>
+            </li>
+          </div>
+        </div>
+        <div>{isOpen && this.renderOpenView()}</div>
+      </nav>
+    )
+  }
+
   renderFailureView = () => (
     <div className="failure-view">
       <img
         src="https://res.cloudinary.com/di4qjlwyr/image/upload/v1686379733/alert-triangle_vrl8ee.png"
-        alt="alert-triangle"
+        alt="failure view"
         className="alert-icon"
       />
       <h1>Something went wrong. Please try again</h1>
@@ -170,7 +255,7 @@ class Search extends Component {
   )
 
   renderLoadingView = () => (
-    <div className="loader-container-popular">
+    <div className="loader-container-popular" testid="loader">
       <Loader type="TailSpin" color="#D81F26" height={50} width={50} />
     </div>
   )
@@ -193,7 +278,8 @@ class Search extends Component {
   render() {
     return (
       <div className="search-container">
-        <div>{this.renderHeader()}</div>
+        <div className="desktop-header">{this.renderDesktopHeader()}</div>
+        <div className="mobile-header">{this.renderMobileView()}</div>
         {this.renderAllMovies()}
       </div>
     )

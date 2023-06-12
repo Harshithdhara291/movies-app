@@ -66,10 +66,12 @@ class Popular extends Component {
   renderMoviesListView = () => {
     const {moviesList} = this.state
     return (
-      <div className="popular-section">
-        {moviesList.map(movie => (
-          <MovieCard movieData={movie} key={movie.id} />
-        ))}
+      <div>
+        <ul className="popular-section">
+          {moviesList.map(movie => (
+            <MovieCard movieData={movie} key={movie.id} />
+          ))}
+        </ul>
       </div>
     )
   }
@@ -77,8 +79,8 @@ class Popular extends Component {
   renderFailureView = () => (
     <div className="failure-view">
       <img
-        src="https://res.cloudinary.com/di4qjlwyr/image/upload/v1686379733/alert-triangle_vrl8ee.png"
-        alt="alert-triangle"
+        src="https://res.cloudinary.com/di4qjlwyr/image/upload/v1686569819/Background-Complete_xcdqtm.png"
+        alt="failure view"
         className="alert-icon"
       />
       <h1>Something went wrong. Please try again</h1>
@@ -89,7 +91,7 @@ class Popular extends Component {
   )
 
   renderLoadingView = () => (
-    <div className="loader-container-popular">
+    <div className="loader-container-popular" testid="loader">
       <Loader type="TailSpin" color="#D81F26" height={50} width={50} />
     </div>
   )
